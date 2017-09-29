@@ -17,7 +17,7 @@ public class Main {
     private static Map<Integer, Integer> getOutcomesDistribution(int n, int m){
         System.out.println("\n"+n+" dices with "+m+" sides each ");
         double[] probabilities = new double[ m*n + 1 ];
-        List<List<Integer>> options = buildOptionsList( m, n ) ;
+        Set<Integer> options = buildOptionsList( m, n ) ;
         //System.out.println( options  );
         float minimalProbability = 1f / options.size();
         System.out.println( minimalProbability );
@@ -36,7 +36,7 @@ public class Main {
     }
 
     @SuppressWarnings( "unchecked" )
-    private static List<List<Integer>> buildOptionsList( final int m, final int n ){
+    private static List<Integer> buildOptionsList( final int m, final int n ){
 
         List<List<Integer>> allSubOptions;
         if( n == 1 ){
@@ -44,7 +44,7 @@ public class Main {
         }else if (n > 1){
             allSubOptions = buildOptionsList( m , n - 1 );
         }else{
-            throw new IllegalStateException( " something went wrong, as it cannot be negative recursion level ");
+            throw new IllegalStateException( " something went wrong, as it cannot be negative number of dices ");
         }
         List<List<Integer>> ret  = new LinkedList<>();
         for( int i = 1; i < m + 1 ; i++ ){
